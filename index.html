@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container" id="quiz-menu">
+
+        <p>Choose a category:</p>
+        <select id="selected-category">
+          <option value="">Any Category</option>
+        </select>
+    
+
+    
+        <p id="fact"></p>
+      </div>
+
+    
+</body>
+
+<script>
+    var api_link = "https://api.challonge.com/v1/"
+    var api_key = "jOglcYxW3UNAIKtEx3IpHKVvt06mGdBmS7nRwea5"
+
+    $.ajax({
+      url: api_link
+    }).then(showCategories);
+
+    function showCategories(data){
+        console.log(data);
+    }
+
+</script>
+</html>
