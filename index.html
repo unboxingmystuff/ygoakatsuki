@@ -4,37 +4,86 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>YGOAkatsuki</title>
 </head>
 <body>
 
-    <div class="container" id="quiz-menu">
 
-        <p>Choose a category:</p>
-        <select id="selected-category">
-          <option value="">Any Category</option>
-        </select>
-    
 
-    
-        <p id="fact"></p>
-      </div>
+      <form class="form-container">
 
-    
+        <div class="form-row">
+            
+            <div class="col-md-4 mb-3">
+              <label for="validationServer01">First Name</label>
+              <input type="text" class="form-control" id="validationServer01" placeholder="First name" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Your good name please!
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="validationServer02">Last Name</label>
+              <input type="text" class="form-control" id="validationServer02" placeholder="Last Name" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Your good name please!
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="validationServerUsername">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                </div>
+                <input type="text" class="form-control" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="custom-select" id="selected-category">
+                  <option value="">Any Category</option>
+                </select>
+              </div>
+
+          </div>
+      </form>
 </body>
 
 <script>
     var api_link = "https://db.ygoprodeck.com/api/v7/cardinfo.php"
     var api_key = "jOglcYxW3UNAIKtEx3IpHKVvt06mGdBmS7nRwea5"
     var username = "vannUnboxing"
+    
 
     $.ajax({
       url: api_link
     }).then(showCategories);
 
     function showCategories(data1){
-        console.log(data1.data.name);
+        console.log(data1);
+        var cardList = data1.data;
+        for(card of cardList){
+            var options = `<option value=${card.id}>${card.name}</option>`
+            $('#selected-category').append(options);
+        }
     }
 
 </script>
